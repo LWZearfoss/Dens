@@ -1,0 +1,125 @@
+{% extends "dens/base.html" %}
+
+{% load static %}
+
+{% block title %} Den {% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "css/dens/den.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<input type='hidden' value='{{ den_slug }}' id='den_slug' />
+<input type='hidden' value='{{ request.user.id }}' id='user_id' />
+<div class="grid-container">
+    {% verbatim %}
+    <div v-cloak class="grid-x grid-padding-x" id="den">
+        <div class="article-container">
+            <h1 class="text-center small-12">{{ den_name }}</h1>
+            <div class="article-row-section">
+                <div class="article-row-section-inner">
+                    <article class="article-row" v-for="message in messages" v-bind:key="message.id" ref="chat">
+                        <div class="article-row-media">
+                            <div v-if="!message.attachment">
+                            </div>
+                            <div v-else-if="image_formats.has(message.attachment.split('.').pop())" class="card-image">
+                                <img :src="protocol + path + message.attachment">
+                            </div>
+                            <div v-else-if="audio_formats.has(message.attachment.split('.').pop())">
+                                <audio controls :src="protocol + path + message.attachment">
+                                    Your browser does not support the
+                                    <code>audio</code> element.
+                                </audio>
+                            </div>
+                            <div v-else-if="video_formats.has(message.attachment.split('.').pop())">
+                                <video controls :src="protocol + path + message.attachment">
+                                    Your browser does not support the
+                                    <code>video</code> element.
+                                </video>
+                            </div>
+                            <div v-else>
+                                <a :href="protocol + path + message.attachment" download>
+                                    <button class="button" :title="message.attachment.split('/media/').pop()">Download
+                                        {{ message.attachment.split('.').pop().toUpperCase() }}</button>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="article-row-content">
+                            <p class="article-row-content-description">
+                                {{ message.text }}
+                            </p>
+                            <div class="article-row-content-footer">
+                                <p class="article-row-content-author">{{ message.author_name }}</p>
+                                <time class="article-row-content-time"> {{ (new Date(message.date)).toLocaleString() }}
+                                </time>
+                            </div>
+                            <button class="article-row-content-button alert button" v-if="message.author_id == user_id"
+                                v-on:click="deleteMessage(message.id)">Delete</button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-update-input-box">
+            <div v-if="errors.length">
+                <div v-for="(error, index) in errors" class="callout alert" data-closable>
+                    <b> {{ error }} </b>
+                    <button class="close-button" aria-label="Dismiss error" type="button"
+                        v-on:click="errors.splice(index, 1)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <form @submit.prevent="createMessage">
+                <div class="row input-box-container">
+                    <div class="columns">
+                        <label>
+                            <textarea rows="5" placeholder="Type Your Message Here" v-model="text"
+                                v-on:keyup.enter="createMessage">
+                            </textarea>
+                        </label>
+                    </div>
+                </div>
+                <div class="row medium-collapse user-action-container">
+                    <div class="small-12 medium-7 columns">
+                        <div class="user-action-box">
+                            <div class="action-area">
+                                <label class="action-anchor" tabindex="2"
+                                    :title="attachment ? $refs.attachment.files[0].name : 'Attach a File'">
+                                    <i :class="attachment ? 'icon-check' : 'icon-attach'" aria-hidden="true"></i>
+                                    <input class="attachment-form" type="file" id="file" ref="attachment"
+                                        v-on:change="handleFile" />
+                                </label>
+                            </div>
+                            <div class="submit-container">
+                                <button class="button submit-button" type="submit"><i
+                                        class="icon-paper-plane"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    {% endverbatim %}
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static "js/vendor/vue.js" %}"></script>
+<script src="{% static "js/vendor/wasm_flate.js" %}"></script>
+<script type=module>
+    const { zlib_encode } = wasm_bindgen;
+    (async () => {
+        await wasm_bindgen("{% static "wasm/vendor/wasm_flate.wasm" %}");
+        window.zlib_encode = zlib_encode;
+    })();
+</script>
+<script src="{% static "js/dens/den.js" %}"></script>
+
+{% endblock %}

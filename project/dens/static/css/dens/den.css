@@ -1,0 +1,169 @@
+[v-cloak] {
+    display: none;
+}
+
+.article-container {
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding: 1rem 0 13rem;
+}
+
+.article-row-section {
+    max-width: 80rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.article-row-section-inner {
+    -webkit-flex: 0 0 100%;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    max-width: 60rem;
+    min-width: 15rem;
+}
+
+.article-row {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    border-top: 2px solid #e6e6e6;
+    padding: 1.5rem 0;
+}
+
+.article-row-media {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-row-content {
+    color: #0a0a0a;
+}
+
+.article-row-content-description {
+    font-size: 1.25rem;
+}
+
+.article-row-content-footer {
+    float: left;
+}
+
+.article-row-content-author, .article-row-content-time {
+    font-size: 0.875rem;
+    margin-bottom: 0;
+    color: #8a8a8a;
+}
+
+.article-row-content-button {
+    margin-bottom: 0;
+    float: right;
+}
+
+.status-update-input-box {
+    background-color: #fefefe;
+    padding: 0.625rem;
+    width: 100%;
+    border: 1px solid #cacaca;
+    max-width: 60rem;
+    margin-right: auto;
+    margin-left: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.status-update-input-box .input-box-container textarea {
+    margin-bottom: 0;
+}
+
+.status-update-input-box .input-box-container textarea:focus {
+    border: 1px solid #cacaca;
+    box-shadow: none;
+}
+
+.status-update-input-box .input-box-container textarea, .status-update-input-box .input-box-container textarea:focus {
+    border-bottom: none;
+}
+
+.status-update-input-box .user-action-container .user-action-box {
+    padding: 0;
+    border: 1px solid #cacaca;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.status-update-input-box .user-action-container .user-action-box .action-area {
+    width: 20%;
+    border-right: 0.0625rem solid #cacaca;
+    text-align: center;
+    padding-top: 0.675rem;
+    padding-bottom: 0.675rem;
+}
+
+.status-update-input-box .user-action-container .user-action-box .action-area:last-of-type {
+    border-right: none;
+}
+
+.status-update-input-box .user-action-container .user-action-box .action-area .action-anchor {
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.status-update-input-box .user-action-container .user-action-box .action-area .action-anchor {
+    color: #1779ba;
+}
+
+.status-update-input-box .user-action-container .user-submit-box {
+    padding: 0.35rem 0.5rem;
+    border: 1px solid #cacaca;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.status-update-input-box .user-action-container .user-submit-box {
+    border-left: none;
+}
+
+.status-update-input-box .user-action-container .user-submit-box .button {
+    margin-bottom: 0;
+}
+
+.submit-container {
+    width: 100%;
+}
+
+.submit-button {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 0;
+    padding: 100;
+}
+
+.attachment-form {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}

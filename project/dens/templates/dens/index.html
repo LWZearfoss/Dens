@@ -1,0 +1,70 @@
+{% extends "dens/base.html" %}
+
+{% load static %}
+
+{% block title %} Dens {% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static "css/dens/index.css" %}">
+{% endblock %}
+
+{% block content %}
+
+<input type='hidden' value='{{ request.path }}' id='url' />
+<input type='hidden' value='{{ request.user.id }}' id='user_id' />
+
+<div class="grid-container">
+
+    {% verbatim %}
+
+    <div v-cloak class="grid-x grid-padding-x" id="index">
+
+        <h1 class="text-center small-12">Dens</h1>
+
+        <div class="small-12">
+            <div v-if="errors.length">
+                <div v-for="(error, index) in errors" class="callout alert" data-closable>
+                    <b> {{ error }} </b>
+                    <button class="close-button" aria-label="Dismiss error" type="button"
+                        v-on:click="errors.splice(index, 1)">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <form @submit.prevent="createDen">
+                <div class="input-group">
+                    <input class="input-group-field" type="text" placeholder="Den Name" v-model="den_name">
+                    <div class="input-group-button">
+                        <input type="submit" class="button" value="&#43;">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="columns small-12 medium-6 large-4" v-for="den in dens" v-bind:key="den.id">
+            <div class="callout text-center den-callout">
+                <h4><strong> {{ den.name }} </strong></h4>
+                <p> Online: {{ den.count }}</p>
+                <ul class="button-group align-center-middle">
+                    <a class="button" :href="url + 'den/' + den.slug + '/'">Join</a>
+                    <div class="columns" v-if="den.author == user_id">
+                        <button class="alert button" type="submit" v-on:click="deleteDen(den.id)">Delete</button>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% endverbatim %}
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+
+<script src="{% static "js/vendor/vue.js" %}"></script>
+<script src="{% static "js/dens/index.js" %}"></script>
+
+{% endblock %}

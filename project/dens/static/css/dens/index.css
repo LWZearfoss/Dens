@@ -1,0 +1,26 @@
+[v-cloak] {
+    display: none;
+}
+
+.den-callout {
+    margin: 0.5rem;
+}
+
+.input-group-field {
+    position: relative;
+    -webkit-transform: translateX(0.5rem);
+    -ms-transform: translateX(0.5rem);
+    transform: translateX(0.5rem);
+}
+
+.input-group {
+    margin-bottom: 0;
+}
+
+.input-group-button .button {
+    position: relative;
+    -webkit-transform: translateX(-0.5rem);
+    -ms-transform: translateX(-0.5rem);
+    transform: translateX(-0.5rem);
+    min-width: 25vw;
+}

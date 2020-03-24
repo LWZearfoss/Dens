@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+   web:
+      build: .
+      volumes:
+         - .:/code
+      ports:
+         - 8000:8000
+      links:
+         - redis:redis
+      command: python /code/project/manage.py runserver 0.0.0.0:8000
+
+   redis:
+      image: redis
+      expose:
+         - 6379

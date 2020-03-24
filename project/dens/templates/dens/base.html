@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block header %}
+
+<div class="top-bar">
+    <div class="top-bar-left">
+        <ul class="vertical medium-horizontal menu">
+            <li>
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'profile' %}">Profile</a>
+            </li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="vertical medium-horizontal menu">
+            <li>
+                <a href="{% url 'logout' %}">Log Out</a>
+            </li>
+        </ul>
+    </div>
+</div>
+  
+{% endblock %}

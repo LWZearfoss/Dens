@@ -1,0 +1,7 @@
+Django
+django-autoslug
+unidecode
+django-hashedfilenamestorage
+better_profanity
+channels
+channels_redis
