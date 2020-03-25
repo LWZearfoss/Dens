@@ -9,9 +9,26 @@ services:
          - 8000:8000
       links:
          - redis:redis
-      command: python /code/project/manage.py runserver 0.0.0.0:8000
-
+      command:
+         - /bin/bash
+         - -c
+         - |
+            cd /code/project
+            daphne -b 0.0.0.0 -p 8000 project.asgi:application
    redis:
       image: redis
       expose:
          - 6379
+   nginx:
+      restart: always
+      build: ./nginx/
+      depends_on:
+         - web
+      ports:
+         - 80:80
+         #- 443:443
+      volumes:
+         - ./project/dens/static:/static
+         - ./project/media:/media
+      links:
+         - web:web

@@ -1,4 +1,5 @@
 Django
+gunicorn
 django-autoslug
 unidecode
 django-hashedfilenamestorage
