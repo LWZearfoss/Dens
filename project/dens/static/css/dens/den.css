@@ -47,8 +47,9 @@
 }
 
 video {
-    max-height: 25rem;
-    width: auto;
+    height: auto;
+    width: 100%;
+    max-width: 35rem;
 }
 
 img {
