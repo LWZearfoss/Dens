@@ -29,7 +29,7 @@ const den = new Vue({
 						behavior: 'smooth',
 					});
 				}
-			}, 100);
+			}, 1000);
 		}
 	},
 	methods: {
@@ -67,7 +67,7 @@ const den = new Vue({
 					top: document.body.scrollHeight,
 					behavior: 'smooth',
 				});
-			}, 1000);
+			}, 5000);
 		},
 		// Adapted from https://stackoverflow.com/questions/36280818/how-to-convert-file-to-base64-in-javascript
 		async toBase64(attachment) {

@@ -240,3 +240,9 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# Ignore Certs
+nginx/ssl/
+
+# Ignore Files
+project/static
+project/media

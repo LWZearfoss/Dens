@@ -5,8 +5,8 @@ services:
       build: .
       volumes:
          - .:/code
-      ports:
-         - 8000:8000
+      expose:
+         - 8000
       links:
          - redis:redis
       command:
@@ -26,9 +26,9 @@ services:
          - web
       ports:
          - 80:80
-         #- 443:443
+         - 443:443
       volumes:
-         - ./project/dens/static:/static
+         - ./project/static:/static
          - ./project/media:/media
       links:
          - web:web

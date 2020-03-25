@@ -13,7 +13,7 @@ from .validators import validate_den_name_not_empty, validate_den_name_length, v
 
 
 def den_fetch(den):
-    message_objects = ChatMessageModel.objects.filter(den=den)
+    message_objects = ChatMessageModel.objects.filter(den=den).order_by('date')
     data = {}
     data["den_name"] = den.name
     data["messages"] = []

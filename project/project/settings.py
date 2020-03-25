@@ -25,7 +25,7 @@ SECRET_KEY = '(kv95)z%&(txky(%r-ces!@qbv$75%s1lt5hx4%myj-_denoj@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ["dens.luke.zone", "www.dens.luke.zone"]
 
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = "/login/"
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '[YOUR NAME HERE]',
+        'USER': '[YOUR USER HERE]]',
+        'PASSWORD':'[YOUR PASSWORD HERE]]',
+        'HOST': '[YOUR HOST HERE]]',
+        'PORT': 5432,
     }
 }
 
@@ -120,8 +124,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
 
 # Media
 MEDIA_ROOT  = os.path.join(BASE_DIR, 'media')
