@@ -46,6 +46,16 @@
     padding: 1.5rem 0;
 }
 
+video {
+    max-height: 25rem;
+    width: auto;
+}
+
+img {
+    max-height: 25rem;
+    width: auto;
+}
+
 .article-row-media {
     text-align: center;
     width: 100%;
