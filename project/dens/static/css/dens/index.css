@@ -22,5 +22,5 @@
     -webkit-transform: translateX(-0.5rem);
     -ms-transform: translateX(-0.5rem);
     transform: translateX(-0.5rem);
-    min-width: 25vw;
+    min-width: 8rem;
 }
